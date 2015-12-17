@@ -93,28 +93,28 @@ function listUpcomingEvents() {
 {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
        
-    var authorize_div = document.getElementById('authorize-div');
-    if(typeof(authorize_div) == 'undefined' || authorize_div == null) {
-        authorize_div = document.createElement('div');
-        authorize_div.id = 'authorize-div';
-        var authorize_button = document.createElement('button');
-        authorize_button.innerHTML = 'Login a google account';
-        authorize_div.appendChild(authorize_button);
-        authorize_button.setAttribute('onClick', 'handleAuthClick(event)');
-        quarterForm.appendChild(authorize_div);
+    var authorizeDiv = document.getElementById('authorize-div');
+    if(typeof(authorizeDiv) == 'undefined' || authorizeDiv == null) {
+        authorizeDiv = document.createElement('div');
+        authorizeDiv.id = 'authorize-div';
+        var authorizeButton = document.createElement('button');
+        authorizeButton.innerHTML = 'Login a google account';
+        authorizeDiv.appendChild(authorizeButton);
+        authorizeButton.setAttribute('onClick', 'handleAuthClick(event)');
+        quarterForm.appendChild(authorizeDiv);
     }
     
-    var addSchedule_div = document.getElementById('addSchedule_div') 
-    if(typeof(addSchedule_div) == 'undefined' || addSchedule_div == null) {
-        addSchedule_div = document.createElement('div');
-        addSchedule_div.id = 'addSchedule-div';
-        var addSchedule_button = document.createElement('button');
-        addSchedule_button.innerHTML = 'Add current schedule to google calendar';
-        addSchedule_div.appendChild(addSchedule_button);
-        addSchedule_button.setAttribute('onClick', 'handleAuthClick(event)');
-        quarterForm.appendChild(addSchedule_div);
+    var addScheduleDiv = document.getElementById('addSchedule-div') 
+    if(typeof(addScheduleDiv) == 'undefined' || addScheduleDiv == null) {
+        addScheduleDiv = document.createElement('div');
+        addScheduleDiv.id = 'addSchedule-div';
+        var addScheduleButton = document.createElement('button');
+        addScheduleButton.innerHTML = 'Add current schedule to google calendar';
+        addScheduleDiv.appendChild(addScheduleButton);
+        addScheduleButton.setAttribute('onClick', 'handleAuthClick(event)');
+        quarterForm.appendChild(addScheduleDiv);
     }
-    addSchedule_div.style.displayer = 'none';
+    addScheduleDiv.style.displayer = 'none';
     
     
     if(document.getElementById('onLoadCheckAuth') == null) {
