@@ -102,5 +102,5 @@ function appendPre(message) {
 {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
     //first child is the label 'Term'
-    quarterForm.children[0].style = 'none';
+    quarterForm.children[0].style.display = 'none';
 }
