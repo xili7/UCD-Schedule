@@ -90,6 +90,19 @@ function listUpcomingEvents() {
     });
 }
 
+function addCheckBox(classContainer, i) {
+    var firstChild = classContainer.firstChild;
+    var checkBoxDiv = document.createElement('div');
+    checkBoxDiv.className = 'span12';
+    var checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    checkBox.checked = true;
+    checkBox.id = 'classCheckBox' + i;
+    checkBox.insertAdjacentHTML('afterend', 'add this class to schedule');
+    checkBoxDiv.appendChild(checkBox);
+    classContainer.insertBefore(checkBoxDiv, firstChild);
+}
+
 
 /**
  * Create selection boxes in response to user clicking select quarter button.
@@ -100,12 +113,16 @@ function handleQuarterSelectClick(event) {
     quarterForm.getElementsByTagName('select')[0].style.display = 'none';
     var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
     window.confirm(classes.length);
+    
+    for(var i = 0; i < classes.length; i++) {
+        addCheckBox(classes[i], i);
+    }
     return false;
 }
 
 var quarterForm;
 {
-    var quarterForm = document.getElementsByName('schedTermForm')[0];
+    quarterForm = document.getElementsByName('schedTermForm')[0];
     if(quarterForm == null) {
         window.alert("Please login your UCD account and go to MyUCDavis home page.");
     } else {
