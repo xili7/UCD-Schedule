@@ -93,7 +93,7 @@ function listUpcomingEvents() {
 {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
        
-    var authorize_div = quarterForm.getElementById('authorize-div');
+    var authorize_div = document.getElementById('authorize-div');
     if(typeof(authorize_div) == 'undefined' || authorize_div == null) {
         authorize_div = document.createElement('div');
         authorize_div.id = 'authorize-div';
@@ -104,7 +104,7 @@ function listUpcomingEvents() {
         quarterForm.appendChild(authorize_div);
     }
     
-    var addSchedule_div = quarterForm.getElementById('addSchedule_div') 
+    var addSchedule_div = document.getElementById('addSchedule_div') 
     if(typeof(addSchedule_div) == 'undefined' || addSchedule_div == null) {
         addSchedule_div = document.createElement('div');
         addSchedule_div.id = 'addSchedule-div';
