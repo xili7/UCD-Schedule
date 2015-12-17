@@ -1,6 +1,6 @@
 var CLIENT_ID = '714904123751-q81ourgv190smgj45sj3e0oc15aisv48.apps.googleusercontent.com';
 
-var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 /**
  * Check if current user has authorized this application.
@@ -87,18 +87,6 @@ function listUpcomingEvents() {
     });
 }
 
-/**
- * Append a pre element to the body containing the given message
- * as its text node.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function appendPre(message) {
-    var pre = document.getElementById('output');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
-}
-
 {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
     //first child is the label 'Term'
@@ -111,6 +99,14 @@ function appendPre(message) {
     authorize_div.appendChild(authorize_button);
     authorize_button.setAttribute('onClick', 'handleAuthClick(event)');
     quarterForm.appendChild(authorize_div);
+    
+    var addSchedule_div = document.createElement('div');
+    addSchedule_div.id = 'addSchedule-div';
+    var addSchedule_button = document.createElement('button');
+    addSchedule_button.innerHTML = 'Add current schedule to google calendar';
+    addSchedule_div.appendChild(addSchedule_button);
+    addSchedule_button.setAttribute('onClick', 'handleAuthClick(event)');
+    quarterForm.appendChild(addSchedule_div);
     
     var f = document.createElement('script');
     f.src = 'https://apis.google.com/js/client.js?onload=checkAuth';
