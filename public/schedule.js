@@ -2,6 +2,9 @@ var CLIENT_ID = '714904123751-q81ourgv190smgj45sj3e0oc15aisv48.apps.googleuserco
 
 var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
+var classEvents = classEvents || {};
+var classFinalEvents = classFinalEvents || {};
+
 /**
  * Check if current user has authorized this application.
  */
@@ -13,6 +16,7 @@ function checkAuth() {
         'immediate': true
         }, handleAuthResult);
 }
+
 
 /**
  * Handle response from authorization server.
@@ -35,6 +39,7 @@ function handleAuthResult(authResult) {
     }
 }
 
+
 /**
  * Initiate auth flow in response to user clicking authorize button.
  *
@@ -47,6 +52,7 @@ function handleAuthClick(event) {
     return false;
 }
 
+
 /**
  * Load Google Calendar client library. List upcoming events
  * once client library is loaded.
@@ -54,6 +60,7 @@ function handleAuthClick(event) {
 function loadCalendarApi() {
     gapi.client.load('calendar', 'v3', listUpcomingEvents);
 }
+
 
 /**
  * Print the summary and start datetime/date of the next ten events in
@@ -90,6 +97,10 @@ function listUpcomingEvents() {
     });
 }
 
+
+/**
+ * Create and show checkbox before the class names
+ */
 function addCheckBox(classContainer, i) {
     var firstChild = classContainer.firstChild;
     var checkBoxDiv = document.createElement('div');
@@ -100,6 +111,30 @@ function addCheckBox(classContainer, i) {
     checkBoxDiv.appendChild(checkBox);
     checkBox.insertAdjacentHTML('afterend', " add class schedule to google calendar");
     classContainer.insertBefore(checkBoxDiv, firstChild);
+}
+
+
+/**
+ * Initiate the add selected class schedules to google calendar process.
+ */
+function parseClass(classContainer, i) {
+    
+}
+
+/**
+ * Initiate the add selected class schedules to google calendar process.
+ */
+function addClassesToCalendar(event) {
+    var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
+    
+    for(var i = 0; i < classes.length; i++) {
+        if(!classes[i].firstChild.firstChild.checked) {
+            continue;
+        }
+        
+        parseClass(classes[i], i);
+    }
+    return false;
 }
 
 
@@ -118,11 +153,15 @@ function handleQuarterSelectClick(event) {
     }
     
     var addScheduleDiv = document.getElementById('addSchedule-div');
-    addScheduleDiv.firstChild.innerHTML = 'Add classes to Google Calendar!'
-    addScheduleDiv.firstChild.setAttribute('onClick', 'addClassesToCalendar()');
+    addScheduleDiv.firstChild.innerHTML = 'Add the selected classes to Google Calendar!'
+    addScheduleDiv.firstChild.setAttribute('onClick', 'addClassesToCalendar(event)');
     return false;
 }
 
+/**
+ * initializations
+ * add the authorization/quarter selection buttons
+ */
 var quarterForm;
 {
     quarterForm = document.getElementsByName('schedTermForm')[0];
