@@ -124,7 +124,7 @@ function addCheckBox(classContainer, i) {
  */
 function parseClass(classContainer) {
     var classNameString = classContainer.getElementsByClassName('className');
-    var classNameParts = classNameString.innerHTML.split(' - ');
+    var classNameParts = classNameString[0].innerHTML.split(' - ');
     window.alert(classNameParts);
     window.alert(newerStartDate.toISOString());
 }
