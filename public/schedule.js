@@ -93,13 +93,12 @@ function listUpcomingEvents() {
 function addCheckBox(classContainer, i) {
     var firstChild = classContainer.firstChild;
     var checkBoxDiv = document.createElement('div');
-    checkBoxDiv.className = 'span12';
     var checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.checked = true;
     checkBox.id = 'classCheckBox' + i;
     checkBoxDiv.appendChild(checkBox);
-    checkBox.insertAdjacentHTML('afterend', 'add this class to schedule');
+    checkBox.insertAdjacentHTML('afterend', ' add this class to schedule');
     classContainer.insertBefore(checkBoxDiv, firstChild);
 }
 
