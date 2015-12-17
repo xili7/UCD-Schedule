@@ -5,6 +5,11 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 var classEvents = classEvents || {};
 var classFinalEvents = classFinalEvents || {};
 
+var today = today || new Date();
+var winterStartDate = winterStartDate || new Date(2015, 0, 4);
+var newerStartDate = today.now() > winterStartDate.now() ? today : winterStartDate;
+var winterEndDate = winterEndDate || new Date(2016, 2, 14, 23);
+
 /**
  * Check if current user has authorized this application.
  */
@@ -117,8 +122,11 @@ function addCheckBox(classContainer, i) {
 /**
  * Initiate the add selected class schedules to google calendar process.
  */
-function parseClass(classContainer, i) {
-    
+function parseClass(classContainer) {
+    var classNameString = classContainer.getElementsByClassName('className');
+    var classNameParts = classNameString.innerHTML.split(' - ');
+    window.alert(classNameParts);
+    window.alert(newerStartDate.toISOString());
 }
 
 /**
@@ -132,7 +140,7 @@ function addClassesToCalendar(event) {
             continue;
         }
         
-        parseClass(classes[i], i);
+        parseClass(classes[i]);
     }
     return false;
 }
