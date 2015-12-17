@@ -10,6 +10,22 @@ var winterStartDate = winterStartDate || new Date(2016, 0, 4);
 var newerStartDate = today.getTime() > winterStartDate.getTime() ? today : winterStartDate;
 var winterEndDate = winterEndDate || new Date(2016, 2, 14, 23);
 
+var weekdayMap = {
+    'M': 'MO',
+    'T': 'TU',
+    'W': 'WE',
+    'R': 'TH',
+    'F': 'FR'
+}
+
+var weekdayNum = {
+    'MO': 1,
+    'TU': 2,
+    'WE': 3,
+    'TH': 4,
+    'FR': 5
+}
+
 /**
  * Check if current user has authorized this application.
  */
@@ -118,15 +134,40 @@ function addCheckBox(classContainer, i) {
     classContainer.insertBefore(checkBoxDiv, firstChild);
 }
 
+function convertWeekday(weekdayLettersString) {
+    var weekdays = [];
+    for(var letter in weekdayLettersString.split()) {
+        weekdays.push(weekdayMap[letter]);
+    }
+    
+    return weekdays;
+}
+
+function findFirstClassDate(weekdays) {
+    var firstClassDate = new Date(newerStartDate);
+    
+    while(true) {
+        for(var weekday in weekdays) {
+            if(firstClassDate.getDay() == weekdayNum[weekday]) {
+                return firstClassDate;
+            }
+        }
+        firstClassDate.setDate(firstClassDate.getDate() + 1);
+    }
+}
+
 
 /**
  * Initiate the add selected class schedules to google calendar process.
  */
 function parseClass(classContainer) {
-    var classNameString = classContainer.getElementsByClassName('className');
-    var classNameParts = classNameString[0].innerHTML.split(' - ');
-    window.alert(classNameParts);
-    window.alert(newerStartDate.toISOString());
+    var classNameString = classContainer.getElementsByClassName('className')[0];
+    var classNameParts = classNameString.innerHTML.split(' - ');
+    
+    var schedData = classContainer.getElementsByClassName('schedData').firstChild.firstChild.children();
+    
+    var firstClassDate = findFirstClassDate(convertWeekday())
+    
 }
 
 /**
