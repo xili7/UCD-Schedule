@@ -90,6 +90,19 @@ function listUpcomingEvents() {
     });
 }
 
+
+/**
+ * Create selection boxes in response to user clicking select quarter button.
+ *
+ * @param {Event} event Button click event.
+ */
+function handleQuarterSelectClick(event) {
+    var classes = quarterForm.getElementsByClassName('class_container');
+    window.confirm(classes.length);
+    return false;
+}
+
+var quarterForm;
 {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
     if(quarterForm == null) {
@@ -111,9 +124,9 @@ function listUpcomingEvents() {
             addScheduleDiv = document.createElement('div');
             addScheduleDiv.id = 'addSchedule-div';
             var addScheduleButton = document.createElement('button');
-            addScheduleButton.innerHTML = 'Add current schedule to google calendar';
+            addScheduleButton.innerHTML = 'Select a quarter, then click me!';
             addScheduleDiv.appendChild(addScheduleButton);
-            addScheduleButton.setAttribute('onClick', 'handleAuthClick(event)');
+            addScheduleButton.setAttribute('onClick', 'handleQuarterSelectClick(event)');
             quarterForm.appendChild(addScheduleDiv);
         }
         addScheduleDiv.style.displayer = 'none';
