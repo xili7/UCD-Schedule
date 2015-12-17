@@ -92,6 +92,9 @@ function listUpcomingEvents() {
 
 {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
+    if(quarterForm == null) {
+        window.alert("Please login your UCD account and go to MyUCDavis home page.");
+    }
        
     var authorizeDiv = document.getElementById('authorize-div');
     if(typeof(authorizeDiv) == 'undefined' || authorizeDiv == null) {
