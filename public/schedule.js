@@ -107,7 +107,7 @@ function appendPre(message) {
     var authorize_div = document.createElement('div');
     authorize_div.id = 'authorize-div';
     var authorize_button = document.createElement('button');
-    authorize_button.innerHTML = 'Log in a google account'
+    authorize_button.innerHTML = 'Log in a google account';
     authorize_div.appendChild(authorize_button);
     authorize_button.setAttribute('onClick', 'handleAuthClick(event)');
     quarterForm.appendChild(authorize_div);
