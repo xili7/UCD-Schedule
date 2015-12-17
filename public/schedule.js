@@ -116,6 +116,10 @@ function handleQuarterSelectClick(event) {
     for(var i = 0; i < classes.length; i++) {
         addCheckBox(classes[i], i);
     }
+    
+    var addScheduleDiv = document.getElementById('addSchedule-div');
+    addScheduleDiv.firstChild.innerHTML = 'Add classes to Google Calendar!'
+    addScheduleDiv.firstChild.setAttribute('onClick', 'addClassesToCalendar()');
     return false;
 }
 
