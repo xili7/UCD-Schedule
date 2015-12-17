@@ -93,8 +93,8 @@ function listUpcomingEvents() {
 {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
        
-    var authorize_div = document.getElementById('authorize-div');
-    if(typeof(authorize_div) == 'undefined' || authorize_div != null) {
+    var authorize_div = quarterForm.getElementById('authorize-div');
+    if(typeof(authorize_div) == 'undefined' || authorize_div == null) {
         authorize_div = document.createElement('div');
         authorize_div.id = 'authorize-div';
         var authorize_button = document.createElement('button');
@@ -104,8 +104,8 @@ function listUpcomingEvents() {
         quarterForm.appendChild(authorize_div);
     }
     
-    var addSchedule_div = document.getElementById('addSchedule_div') 
-    if(typeof(addSchedule_div) == 'undefined' || addSchedule_div != null) {
+    var addSchedule_div = quarterForm.getElementById('addSchedule_div') 
+    if(typeof(addSchedule_div) == 'undefined' || addSchedule_div == null) {
         addSchedule_div = document.createElement('div');
         addSchedule_div.id = 'addSchedule-div';
         var addSchedule_button = document.createElement('button');
@@ -116,7 +116,13 @@ function listUpcomingEvents() {
     }
     addSchedule_div.style.displayer = 'none';
     
-    var f = document.createElement('script');
-    f.src = 'https://apis.google.com/js/client.js?onload=checkAuth';
-    document.body.appendChild(f);
+    
+    if(document.getElementById('onLoadCheckAuth') == null) {
+        var f = document.createElement('script');
+        f.id = 'onLoadCheckAuth';
+        f.src = 'https://apis.google.com/js/client.js?onload=checkAuth';
+        document.body.appendChild(f);
+    } else {
+        checkAuth();
+    }
 }
