@@ -98,7 +98,7 @@ function addCheckBox(classContainer, i) {
     checkBox.checked = true;
     checkBox.id = 'classCheckBox' + i;
     checkBoxDiv.appendChild(checkBox);
-    checkBox.insertAdjacentHTML("afterend', ' add class schedule to google calendar");
+    checkBox.insertAdjacentHTML('afterend', " add class schedule to google calendar");
     classContainer.insertBefore(checkBoxDiv, firstChild);
 }
 
