@@ -103,4 +103,11 @@ function appendPre(message) {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
     //first child is the label 'Term'
     quarterForm.children[0].style.display = 'none';
+    
+    var authorize_div = document.createElement('div');
+    var authorize_button = document.createButton('button');
+    authorize_button.innerHTML = 'Log in a google account'
+    authorize_div.appendChild(authorize_button);
+    authorize_button.setAttribute('onClick', 'handleAuthClick(event)');
+    quarterForm.appendChild(authorize_div);
 }
