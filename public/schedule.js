@@ -98,8 +98,8 @@ function addCheckBox(classContainer, i) {
     checkBox.type = 'checkbox';
     checkBox.checked = true;
     checkBox.id = 'classCheckBox' + i;
-    checkBox.insertAdjacentHTML('afterend', 'add this class to schedule');
     checkBoxDiv.appendChild(checkBox);
+    checkBox.insertAdjacentHTML('afterend', 'add this class to schedule');
     classContainer.insertBefore(checkBoxDiv, firstChild);
 }
 
