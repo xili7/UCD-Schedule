@@ -97,7 +97,7 @@ function listUpcomingEvents() {
  * @param {Event} event Button click event.
  */
 function handleQuarterSelectClick(event) {
-    var classes = quarterForm.getElementsByClassName('class_container');
+    var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
     window.confirm(classes.length);
     return false;
 }
@@ -114,6 +114,7 @@ var quarterForm;
             authorizeDiv.id = 'authorize-div';
             var authorizeButton = document.createElement('button');
             authorizeButton.innerHTML = 'Login a google account';
+            authorizeButton.type = 'button';
             authorizeDiv.appendChild(authorizeButton);
             authorizeButton.setAttribute('onClick', 'handleAuthClick(event)');
             quarterForm.appendChild(authorizeDiv);
@@ -125,6 +126,7 @@ var quarterForm;
             addScheduleDiv.id = 'addSchedule-div';
             var addScheduleButton = document.createElement('button');
             addScheduleButton.innerHTML = 'Select a quarter, then click me!';
+            addScheduleButton.type = 'button'
             addScheduleDiv.appendChild(addScheduleButton);
             addScheduleButton.setAttribute('onClick', 'handleQuarterSelectClick(event)');
             quarterForm.appendChild(addScheduleDiv);
