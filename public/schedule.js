@@ -97,6 +97,7 @@ function listUpcomingEvents() {
  * @param {Event} event Button click event.
  */
 function handleQuarterSelectClick(event) {
+    quarterForm.getElementsByTagName('select')[0].style.display = 'none';
     var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
     window.confirm(classes.length);
     return false;
