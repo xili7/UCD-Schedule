@@ -94,7 +94,7 @@ function listUpcomingEvents() {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
        
     var authorize_div = document.getElementById('authorize-div');
-    if(typeof(authorize_div) != 'undefined' && authorize_div != null) {
+    if(typeof(authorize_div) == 'undefined' || authorize_div != null) {
         authorize_div = document.createElement('div');
         authorize_div.id = 'authorize-div';
         var authorize_button = document.createElement('button');
@@ -105,7 +105,7 @@ function listUpcomingEvents() {
     }
     
     var addSchedule_div = document.getElementById('addSchedule_div') 
-    if(typeof(addSchedule_div) != 'undefined' && addSchedule_div != null) {
+    if(typeof(addSchedule_div) == 'undefined' || addSchedule_div != null) {
         addSchedule_div = document.createElement('div');
         addSchedule_div.id = 'addSchedule-div';
         var addSchedule_button = document.createElement('button');
