@@ -6,12 +6,12 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
  * Check if current user has authorized this application.
  */
 function checkAuth() {
-gapi.auth.authorize(
-    {
-    'client_id': CLIENT_ID,
-    'scope': SCOPES.join(' '),
-    'immediate': true
-    }, handleAuthResult);
+    gapi.auth.authorize(
+        {
+        'client_id': CLIENT_ID,
+        'scope': SCOPES.join(' '),
+        'immediate': true
+        }, handleAuthResult);
 }
 
 /**
@@ -105,9 +105,14 @@ function appendPre(message) {
     quarterForm.children[0].style.display = 'none';
     
     var authorize_div = document.createElement('div');
+    authorize_div.id = 'authorize-div';
     var authorize_button = document.createElement('button');
     authorize_button.innerHTML = 'Log in a google account'
     authorize_div.appendChild(authorize_button);
     authorize_button.setAttribute('onClick', 'handleAuthClick(event)');
     quarterForm.appendChild(authorize_div);
+    
+    var f = document.createElement('script');
+    f.src = 'https://apis.google.com/js/client.js?onload=checkAuth';
+    document.body.appendChild(f);
 }
