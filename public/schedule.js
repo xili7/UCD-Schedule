@@ -94,38 +94,38 @@ function listUpcomingEvents() {
     var quarterForm = document.getElementsByName('schedTermForm')[0];
     if(quarterForm == null) {
         window.alert("Please login your UCD account and go to MyUCDavis home page.");
-    }
-       
-    var authorizeDiv = document.getElementById('authorize-div');
-    if(typeof(authorizeDiv) == 'undefined' || authorizeDiv == null) {
-        authorizeDiv = document.createElement('div');
-        authorizeDiv.id = 'authorize-div';
-        var authorizeButton = document.createElement('button');
-        authorizeButton.innerHTML = 'Login a google account';
-        authorizeDiv.appendChild(authorizeButton);
-        authorizeButton.setAttribute('onClick', 'handleAuthClick(event)');
-        quarterForm.appendChild(authorizeDiv);
-    }
-    
-    var addScheduleDiv = document.getElementById('addSchedule-div') 
-    if(typeof(addScheduleDiv) == 'undefined' || addScheduleDiv == null) {
-        addScheduleDiv = document.createElement('div');
-        addScheduleDiv.id = 'addSchedule-div';
-        var addScheduleButton = document.createElement('button');
-        addScheduleButton.innerHTML = 'Add current schedule to google calendar';
-        addScheduleDiv.appendChild(addScheduleButton);
-        addScheduleButton.setAttribute('onClick', 'handleAuthClick(event)');
-        quarterForm.appendChild(addScheduleDiv);
-    }
-    addScheduleDiv.style.displayer = 'none';
-    
-    
-    if(document.getElementById('onLoadCheckAuth') == null) {
-        var f = document.createElement('script');
-        f.id = 'onLoadCheckAuth';
-        f.src = 'https://apis.google.com/js/client.js?onload=checkAuth';
-        document.body.appendChild(f);
     } else {
-        checkAuth();
+        var authorizeDiv = document.getElementById('authorize-div');
+        if(typeof(authorizeDiv) == 'undefined' || authorizeDiv == null) {
+            authorizeDiv = document.createElement('div');
+            authorizeDiv.id = 'authorize-div';
+            var authorizeButton = document.createElement('button');
+            authorizeButton.innerHTML = 'Login a google account';
+            authorizeDiv.appendChild(authorizeButton);
+            authorizeButton.setAttribute('onClick', 'handleAuthClick(event)');
+            quarterForm.appendChild(authorizeDiv);
+        }
+        
+        var addScheduleDiv = document.getElementById('addSchedule-div') 
+        if(typeof(addScheduleDiv) == 'undefined' || addScheduleDiv == null) {
+            addScheduleDiv = document.createElement('div');
+            addScheduleDiv.id = 'addSchedule-div';
+            var addScheduleButton = document.createElement('button');
+            addScheduleButton.innerHTML = 'Add current schedule to google calendar';
+            addScheduleDiv.appendChild(addScheduleButton);
+            addScheduleButton.setAttribute('onClick', 'handleAuthClick(event)');
+            quarterForm.appendChild(addScheduleDiv);
+        }
+        addScheduleDiv.style.displayer = 'none';
+        
+        
+        if(document.getElementById('onLoadCheckAuth') == null) {
+            var f = document.createElement('script');
+            f.id = 'onLoadCheckAuth';
+            f.src = 'https://apis.google.com/js/client.js?onload=checkAuth';
+            document.body.appendChild(f);
+        } else {
+            checkAuth();
+        }
     }
 }
