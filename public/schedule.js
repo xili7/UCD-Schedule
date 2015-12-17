@@ -21,14 +21,17 @@ function checkAuth() {
  */
 function handleAuthResult(authResult) {
     var authorizeDiv = document.getElementById('authorize-div');
+    var addButtonDiv = document.getElementById('addSchedule-div');
     if (authResult && !authResult.error) {
         // Hide auth UI, then load client library.
         authorizeDiv.style.display = 'none';
+        addButtonDiv.style.display = 'inline';
         loadCalendarApi();
     } else {
         // Show auth UI, allowing the user to initiate authorization by
         // clicking authorize button.
         authorizeDiv.style.display = 'inline';
+        addButtonDiv.style.display = 'none';
     }
 }
 
@@ -107,6 +110,7 @@ function listUpcomingEvents() {
     addSchedule_div.appendChild(addSchedule_button);
     addSchedule_button.setAttribute('onClick', 'handleAuthClick(event)');
     quarterForm.appendChild(addSchedule_div);
+    addSchedule_div.style.displayer = 'none';
     
     var f = document.createElement('script');
     f.src = 'https://apis.google.com/js/client.js?onload=checkAuth';
