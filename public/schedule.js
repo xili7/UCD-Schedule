@@ -7,7 +7,7 @@ var classFinalEvents = classFinalEvents || {};
 
 var today = today || new Date();
 var winterStartDate = winterStartDate || new Date(2015, 0, 4);
-var newerStartDate = today.now() > winterStartDate.now() ? today : winterStartDate;
+var newerStartDate = today.getTime() > winterStartDate.getTime() ? today : winterStartDate;
 var winterEndDate = winterEndDate || new Date(2016, 2, 14, 23);
 
 /**
