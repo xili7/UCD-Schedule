@@ -75,7 +75,7 @@ function handleAuthClick(event) {
 
 
 /**
- * Load Google Calendar client library. List upcoming events
+ * Load Google Calendar client library. Add class schedules to google calendar.
  * once client library is loaded.
  */
 function loadCalendarApi() {
@@ -97,7 +97,7 @@ function addClassCallBack() {
         request.execute(function(event) {
             count++;
             if(count == classEvents.length) {
-                if(window.confirm('Finished adding all events to Google Calendar! Refresh or sync your google calendar to see the classes!')) {
+                if(window.confirm('Finished adding all events to Google Calendar! Refresh or sync your google calendar to see the changes!')) {
                     window.location.refresh();
                 } else {
                     window.location.refresh();
@@ -173,7 +173,8 @@ function getCorrectClassStartEndTimes(classIntervalString) {
 
 
 /**
- * Initiate the add selected class schedules to google calendar process.
+ * Parse a class schedule, create class event(s) from it, and store the class events into the classEvents array.
+ * NOTE: There can be more than 1 class events in a class event when there's discussion/lab.
  */
 function parseClass(classContainer) {
     var classNameString = classContainer.getElementsByClassName('className')[0];
@@ -240,9 +241,28 @@ function addClassesToCalendar(event) {
         }
         parseClass(classes[i]);
     }
-    loadCalendarApi();
+    addClassCallBack();
     
     return false;
+}
+
+
+function addCalendarSelectionBox() {
+    var request = gapi.client.calendar.calendarList.list();
+    request.execute(function(response) {
+        var calendarMenu = document.createElement('select');
+        calendarMenu.class = "form-control";
+        
+        var calendars = response.items;
+        for(var i = 0; i < calendars.length; i++) {
+            var option = document.createElement('option');
+            option.value = calendars[i].id;
+            option.innerHTML = calendar[i].summary;
+            calendarMenu.appendChild(option);
+        }
+        
+        quarterForm.appendChild(calendarMenu);
+    });
 }
 
 
@@ -252,7 +272,10 @@ function addClassesToCalendar(event) {
  * @param {Event} event Button click event.
  */
 function handleQuarterSelectClick(event) {
+    quarterForm.children[0].style.display = 'none';
     quarterForm.getElementsByTagName('select')[0].style.display = 'none';
+    gapi.client.load('calendar', 'v3', addCalendarSelectionBox);
+    
     var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
     window.confirm('You have ' + classes.length + ' registered/waitlisted classes');
     
