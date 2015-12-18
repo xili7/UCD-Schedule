@@ -184,8 +184,10 @@ function getCorrectClassStartEndTimes(classIntervalString) {
     if(isPM) {
         if(Number(startParts[0]) < 10) {
             returnArray[0] = Number(startParts[0]) + 12;
-            returnArray[2] = Number(endParts[0]) + 12;
+        } else {
+            returnArray[0] = Number(startParts[0]);
         }
+        returnArray[2] = Number(endParts[0]) + 12;
     } else {
         returnArray[0] = Number(startParts[0]);
         returnArray[2] = Number(endParts[0]);
