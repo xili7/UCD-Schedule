@@ -261,7 +261,8 @@ function addCalendarSelectionBox() {
             calendarMenu.appendChild(option);
         }
         
-        quarterForm.children[0] = calendarMenu;
+        quarterForm.insertBefore(quarterForm.children[0], calendarMenu);
+        quarterForm.insertAdjacentHTML('afterbegin', 'Choose one of your calendars');
     });
 }
 
