@@ -2,8 +2,8 @@ var CLIENT_ID = '714904123751-q81ourgv190smgj45sj3e0oc15aisv48.apps.googleuserco
 
 var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
-var classEvents = classEvents || {};
-var classFinalEvents = classFinalEvents || {};
+var classEvents = classEvents || [];
+var classFinalEvents = classFinalEvents || [];
 
 var today = today || new Date();
 var winterStartDate = winterStartDate || new Date(2016, 0, 4);
@@ -167,8 +167,39 @@ function parseClass(classContainer) {
     
     var schedData = classContainer.getElementsByClassName('schedData')[0].children[0].children[0].children;
     
-    var firstClassDate = findFirstClassDate(convertWeekday(schedData[0].innerHTML));
+    var weekdaysArray = convertWeekday(schedData[0].innerHTML);
+    var firstClassDate = findFirstClassDate(weekdaysArray);
+    var firstClassEndTime = new Date(firstClassDate);
+    var classStartEndTime = schedData[1].innerHTML.split(' - ');
+    var classStartTime = classStartEndTime.split(':');
+    var classEndTime = classEndTime.split(':');
+    firstClassDate.setHours(Number(classStartTime[0]), Number(classStartTime[1]));
+    firstClassEndTime.setHours(Number(classEndTime[0]), Number(classEndTime[1]));
     
+    var classLocation = schedData[2] + ' ' + schedData[3];
+    
+    var classEvent = {
+        'summary': classNameParts[0],
+        'location': classLocation,
+        'description': classNameParts[1],
+        'start': {
+          'dateTime': firstClassDate.toISOString(),
+          'timezone' : 'America/Los_Angeles'
+        },
+        'end': {
+            'dateTime': firstClassEndTime.toISOString(),
+            'timezone' : 'America/Los_Angeles'
+        },
+        'attendees': [],
+        'remainders': {
+            'useDefault': false,
+            'overrides': [
+                {'method': 'popup', 'minutes': 20}
+            ]
+        }
+    };
+    
+    classEvents.push(classEvent);
 }
 
 /**
