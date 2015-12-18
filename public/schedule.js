@@ -6,10 +6,10 @@ var classEvents = [];
 var classFinalEvents = [];
 var count = 0;
 
-var today;
-var winterStartDate;
-var newerStartDate;
-var winterEndDate;
+var today = today || {};
+var winterStartDate = winterStartDate || {};
+var newerStartDate = newerStartDate || {};
+var winterEndDate = winterEndDate || {};
 var selectedCalendarID;
 
 var weekdayMap = {
@@ -341,6 +341,7 @@ var quarterForm;
             checkAuth();
         }
         
+        while(moment != null) {}
         today = moment();
         winterStartDate = moment([2016, 0, 4]);
         newerStartDate = today.diff(winterStartDate) > 0 ? today : winterStartDate;
