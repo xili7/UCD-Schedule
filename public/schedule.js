@@ -137,8 +137,8 @@ function addCheckBox(classContainer, i) {
 function convertWeekday(weekdayLettersString) {
     var weekdays = [];
     var letters = weekdayLettersString.split('')
-    for(var letter in letters) {
-        weekdays.push(weekdayMap[letter]);
+    for(var i = 0; i < letters.length; i++) {
+        weekdays.push(weekdayMap[letters[i]]);
     }
     
     return weekdays;
