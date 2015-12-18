@@ -220,8 +220,11 @@ function parseClass(classContainer) {
     
     var classLocation = schedData[2].innerHTML + ' ' + schedData[3].innerHTML;
     
+    firstClassDate.utc();
+    winterEndDate.utc();
     var rruleString = 'FREQ=WEEKLY;DTSTART=' + firstClassDate.format('YYYYMMDD[T]hmmssZZ');
     rruleString = rruleString + ';UNTIL=' + winterEndDate.format('YYYYMMDD[T]hmmssZZ') + ';WKST=WE;BYDAY=' + weekdaysArray.toString();
+    firstClassDate.local();
     var classEvent = {
         'summary': classNameParts[0],
         'location': classLocation,
