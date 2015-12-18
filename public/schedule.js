@@ -222,7 +222,7 @@ function parseClass(classContainer) {
     
     firstClassDate.utc();
     winterEndDate.utc();
-    var rruleString = 'FREQ=WEEKLY;DTSTART=' + firstClassDate.format('YYYYMMDD[T]hmmss[Z]');
+    var rruleString = 'FREQ=WEEKLY;DTSTART=' + firstClassDate.format('YYYYMMDD[T]Hmmss[Z]');
     rruleString = rruleString + ';UNTIL=' + winterEndDate.format('YYYYMMDD[T]Hmmss[Z]') + ';WKST=WE;BYDAY=' + weekdaysArray.toString();
     firstClassDate.local();
     var classEvent = {
@@ -231,11 +231,11 @@ function parseClass(classContainer) {
         'description': classNameParts[1],
         'start': {
           'dateTime': firstClassDate.format(),
-          'timezone' : 'America/Los_Angeles'
+          'timeZone' : 'America/Los_Angeles'
         },
         'end': {
             'dateTime': firstClassEndTime.format(),
-            'timezone' : 'America/Los_Angeles'
+            'timeZone' : 'America/Los_Angeles'
         },
         'recurrence': [
             'RRULE:' + rruleString
