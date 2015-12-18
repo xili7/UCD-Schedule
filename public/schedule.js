@@ -341,7 +341,7 @@ var quarterForm;
             checkAuth();
         }
         
-        while(moment != null) {}
+        while(typeof moment === 'undefined') {}
         today = moment();
         winterStartDate = moment([2016, 0, 4]);
         newerStartDate = today.diff(winterStartDate) > 0 ? today : winterStartDate;
