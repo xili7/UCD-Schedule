@@ -14,4 +14,5 @@ javascript:(
     }
 )();
 
-//This is the URL of the bookmarket.
+//Copy and paste this whole file as the URL of the bookmark.
+//You can skip these 2 lines though.
