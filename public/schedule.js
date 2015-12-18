@@ -243,6 +243,7 @@ function parseClass(classContainer) {
             'RRULE:' + rruleString
         ],
         'attendees': [],
+        'attachments': [],
         'remainders': {
             'useDefault': false,
             'overrides': [
