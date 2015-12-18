@@ -7,7 +7,7 @@ var classFinalEvents = classFinalEvents || [];
 
 var today = today || moment();
 var winterStartDate = winterStartDate || moment([2016, 0, 4]);
-var newerStartDate = today.getTime() > winterStartDate.getTime() ? today : winterStartDate;
+var newerStartDate = today.diff(winterStartDate) > 0 ? today : winterStartDate;
 var winterEndDate = winterEndDate || moment([2016, 2, 14, 23]);
 
 var weekdayMap = {
