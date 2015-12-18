@@ -5,10 +5,10 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 var classEvents = classEvents || [];
 var classFinalEvents = classFinalEvents || [];
 
-var today = today || new Date();
-var winterStartDate = winterStartDate || new Date(2016, 0, 4);
+var today = today || moment();
+var winterStartDate = winterStartDate || moment([2016, 0, 4]);
 var newerStartDate = today.getTime() > winterStartDate.getTime() ? today : winterStartDate;
-var winterEndDate = winterEndDate || new Date(2016, 2, 14, 23);
+var winterEndDate = winterEndDate || moment([2016, 2, 14, 23]);
 
 var weekdayMap = {
     'M': 'MO',
@@ -162,15 +162,15 @@ function convertWeekday(weekdayLettersString) {
 }
 
 function findFirstClassDate(weekdays) {
-    var firstClassDate = new Date(newerStartDate);
+    var firstClassDate = moment(newerStartDate);
     
     while(true) {
         for(var i = 0; i < weekdays.length; i++) {
-            if(firstClassDate.getDay() == weekdayNum[weekdays[i]]) {
+            if(firstClassDate.days() == weekdayNum[weekdays[i]]) {
                 return firstClassDate;
             }
         }
-        firstClassDate.setDate(firstClassDate.getDate() + 1);
+        firstClassDate.add(1, 'days');
     }
 }
 
@@ -202,12 +202,12 @@ function parseClass(classContainer) {
     
     var weekdaysArray = convertWeekday(schedData[0].innerHTML);
     var firstClassDate = findFirstClassDate(weekdaysArray);
-    var firstClassEndTime = new Date(firstClassDate.toString());
+    var firstClassEndTime = moment(firstClassDate.toString());
     var classStartEndTime = schedData[1].innerHTML.split(' - ');
     var classStartTime = convert12To24HourTime(classStartEndTime[0]);
     var classEndTime = convert12To24HourTime(classStartEndTime[1]);
-    firstClassDate.setHours(classStartTime[0], classStartTime[1]);
-    firstClassEndTime.setHours(classEndTime[0], classEndTime[1]);
+    firstClassDate.hours(classStartTime[0]).minutes(classStartTime[1]);
+    firstClassEndTime.hours(classEndTime[0]).minutes(classEndTime[1]);
     
     var classLocation = schedData[2].innerHTML + ' ' + schedData[3].innerHTML;
     
@@ -216,11 +216,11 @@ function parseClass(classContainer) {
         'location': classLocation,
         'description': classNameParts[1],
         'start': {
-          'dateTime': firstClassDate.toISOString(),
+          'dateTime': firstClassDate.format(),
           'timezone' : 'America/Los_Angeles'
         },
         'end': {
-            'dateTime': firstClassEndTime.toISOString(),
+            'dateTime': firstClassEndTime.format(),
             'timezone' : 'America/Los_Angeles'
         },
         'attendees': [],
@@ -245,10 +245,8 @@ function addClassesToCalendar(event) {
         if(!classes[i].firstChild.firstChild.checked) {
             continue;
         }
-        
         parseClass(classes[i]);
     }
-    
     loadCalendarApi();
     
     return false;

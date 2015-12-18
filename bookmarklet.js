@@ -1,6 +1,10 @@
 javascript:(
     function(){
         if(~window.location.href.indexOf('my.ucdavis.edu')) {
+            var f  = document.createElement('script');
+            f.src= 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js';
+            document.body.appendChild(f);
+            
             var g = document.createElement('script');
             g.src = 'https://ucdxili7.azurewebsites.net/schedule.js';
             document.body.appendChild(g);
