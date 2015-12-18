@@ -2,8 +2,8 @@ var CLIENT_ID = '714904123751-q81ourgv190smgj45sj3e0oc15aisv48.apps.googleuserco
 
 var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
-var classEvents = classEvents || [];
-var classFinalEvents = classFinalEvents || [];
+var classEvents = [];
+var classFinalEvents = [];
 
 var today = today || moment();
 var winterStartDate = winterStartDate || moment([2016, 0, 4]);
@@ -242,6 +242,7 @@ function parseClass(classContainer) {
  */
 function addClassesToCalendar(event) {
     var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
+    classEvents = [];
     
     for(var i = 0; i < classes.length; i++) {
         if(!classes[i].firstChild.firstChild.checked) {
