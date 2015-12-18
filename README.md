@@ -8,5 +8,5 @@ A bookmarklet that helps UCD students add their class schedule to Google Calenda
   IMPORTANT: The URL should start with **javascript:**  
   If you don't see it at the beginning of the URL you pasted, add it back.
 3. Go to [my.ucdavis.edu](my.ucdavis.edu), and login your UCD account.
-4. Click the bookmark.
-5. Follow the instructions in the mySchedule tile.
+4. Click the bookmark you created.
+5. Follow the instructions at the mySchedule tile.
