@@ -252,7 +252,7 @@ function addClassesToCalendar(event) {
  */
 
 function addCalendarSelectionMenu() {
-    var request = gapi.client.calendar.calendarList.list();
+    var request = gapi.client.calendar.calendarList.list({'minAccessRole': 'writer'});
     request.execute(function(response) {
         var calendarMenu = document.createElement('select');
         calendarMenu.class = "form-control";
