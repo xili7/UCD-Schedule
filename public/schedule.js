@@ -159,6 +159,7 @@ function findFirstClassDate(weekdays) {
 
 function convert12To24HourTime(oldTime) {
     var parts = oldTime.split(':');
+    parts[1] = parts[1].replace('00', '0');
     
     if(parts[1].indexOf('pm') >= 0) {
         parts[0] = Number(parts[0]) + 12;
