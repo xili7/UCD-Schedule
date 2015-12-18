@@ -4,6 +4,7 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 var classEvents = [];
 var classFinalEvents = [];
+var count = 0;
 
 var today = today || moment();
 var winterStartDate = winterStartDate || moment([2016, 0, 4]);
@@ -94,7 +95,8 @@ function addClassCallBack() {
         });
     
         request.execute(function(event) {
-            window.alert('finished adding class ' + i + 'to google calendar');
+            window.confirm('Finished adding rule ' + count + ' to google calendar.');
+            count++;
         });
     }
 }
