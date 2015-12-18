@@ -189,7 +189,7 @@ function getCorrectClassStartEndTimes(classIntervalString) {
     }
     
     returnArray[1] = Number(startParts[1]);
-    returnArray[3] = Number(endParts.substring(0, 2));
+    returnArray[3] = Number(endParts[1].substring(0, 2));
     
     return returnArray;
 }
@@ -264,7 +264,7 @@ function addClassesToCalendar(event) {
 function handleQuarterSelectClick(event) {
     quarterForm.getElementsByTagName('select')[0].style.display = 'none';
     var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
-    window.confirm('You have' + classes.length + ' registered/waitlisted classes');
+    window.confirm('You have ' + classes.length + ' registered/waitlisted classes');
     
     for(var i = 0; i < classes.length; i++) {
         addCheckBox(classes[i], i);
