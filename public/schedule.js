@@ -208,8 +208,10 @@ function parseClass(classContainer) {
     var firstClassDate = findFirstClassDate(weekdaysArray);
     var firstClassEndTime = moment(firstClassDate);
     var correctTimeParts = getCorrectClassStartEndTimes(schedData[1].innerHTML);
-    firstClassDate.hours(correctTimeParts[0]).minutes(correctTimeParts[1]);
-    firstClassEndTime.hours(correctTimeParts[2]).minutes(correctTimeParts[3]);
+    firstClassDate.hours(correctTimeParts[0]);
+    firstClassDate.minutes(correctTimeParts[1]);
+    firstClassEndTime.hours(correctTimeParts[2]);
+    firstClassEndTime.minutes(correctTimeParts[3]);
     
     var classLocation = schedData[2].innerHTML + ' ' + schedData[3].innerHTML;
     
