@@ -136,7 +136,7 @@ function addCheckBox(classContainer, i) {
 
 function convertWeekday(weekdayLettersString) {
     var weekdays = [];
-    for(var letter in weekdayLettersString.split()) {
+    for(var letter in weekdayLettersString.split('')) {
         weekdays.push(weekdayMap[letter]);
     }
     
@@ -164,9 +164,9 @@ function parseClass(classContainer) {
     var classNameString = classContainer.getElementsByClassName('className')[0];
     var classNameParts = classNameString.innerHTML.split(' - ');
     
-    var schedData = classContainer.getElementsByClassName('schedData').firstChild.firstChild.children();
+    var schedData = classContainer.getElementsByClassName('schedData')[0].children[0].children[0].children;
     
-    var firstClassDate = findFirstClassDate(convertWeekday())
+    var firstClassDate = findFirstClassDate(convertWeekday(schedData[0].innerHTML));
     
 }
 
