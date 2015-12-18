@@ -175,49 +175,52 @@ function parseClass(classContainer) {
     var classNameString = classContainer.getElementsByClassName('className')[0];
     var classNameParts = classNameString.innerHTML.split(' - ');
     
-    var schedData = classContainer.getElementsByClassName('schedData')[0].children[0].children[0].children;
+    var schedData = classContainer.getElementsByClassName('schedData')[0].children[0].children;
     
-    var weekdaysArray = convertWeekday(schedData[0].innerHTML);
-    var firstClassDate = findFirstClassDate(weekdaysArray);
-    var firstClassEndTime = moment(firstClassDate);
-    var correctTimeParts = getCorrectClassStartEndTimes(schedData[1].innerHTML);
-    firstClassDate.hours(correctTimeParts[0]);
-    firstClassDate.minutes(correctTimeParts[1]);
-    firstClassEndTime.hours(correctTimeParts[2]);
-    firstClassEndTime.minutes(correctTimeParts[3]);
-    
-    var classLocation = schedData[2].innerHTML + ' ' + schedData[3].innerHTML;
-    
-    firstClassDate.utc();
-    winterEndDate.utc();
-    var rruleString = 'FREQ=WEEKLY;UNTIL=' + winterEndDate.format('YYYYMMDD[T]HHmmss[Z]') + ';WKST=SU;BYDAY=' + weekdaysArray.toString();
-    firstClassDate.local();
-    var classEvent = {
-        'summary': classNameParts[0],
-        'location': classLocation,
-        'description': classNameParts[1],
-        'start': {
-          'dateTime': firstClassDate.format(),
-          'timeZone' : 'America/Los_Angeles'
-        },
-        'end': {
-            'dateTime': firstClassEndTime.format(),
+    for(var i = 0; i < schedData.length; i++) {
+        var currentSchedData = schedData[i].children;
+        var weekdaysArray = convertWeekday(currentSchedData[0].innerHTML);
+        var firstClassDate = findFirstClassDate(weekdaysArray);
+        var firstClassEndTime = moment(firstClassDate);
+        var correctTimeParts = getCorrectClassStartEndTimes(currentSchedData[1].innerHTML);
+        firstClassDate.hours(correctTimeParts[0]);
+        firstClassDate.minutes(correctTimeParts[1]);
+        firstClassEndTime.hours(correctTimeParts[2]);
+        firstClassEndTime.minutes(correctTimeParts[3]);
+        
+        var classLocation = currentSchedData[2].innerHTML + ' ' + currentSchedData[3].innerHTML;
+        
+        firstClassDate.utc();
+        winterEndDate.utc();
+        var rruleString = 'FREQ=WEEKLY;UNTIL=' + winterEndDate.format('YYYYMMDD[T]HHmmss[Z]') + ';WKST=SU;BYDAY=' + weekdaysArray.toString();
+        firstClassDate.local();
+        var classEvent = {
+            'summary': classNameParts[0],
+            'location': classLocation,
+            'description': classNameParts[1],
+            'start': {
+            'dateTime': firstClassDate.format(),
             'timeZone' : 'America/Los_Angeles'
-        },
-        'recurrence': [
-            'RRULE:' + rruleString
-        ],
-        'attendees': [],
-        'attachments': [],
-        'remainders': {
-            'useDefault': false,
-            'overrides': [
-                {'method': 'popup', 'minutes': 20}
-            ]
-        }
-    };
+            },
+            'end': {
+                'dateTime': firstClassEndTime.format(),
+                'timeZone' : 'America/Los_Angeles'
+            },
+            'recurrence': [
+                'RRULE:' + rruleString
+            ],
+            'attendees': [],
+            'attachments': [],
+            'remainders': {
+                'useDefault': false,
+                'overrides': [
+                    {'method': 'popup', 'minutes': 20}
+                ]
+            }
+        };
     
-    classEvents.push(classEvent);
+        classEvents.push(classEvent);
+    }
 }
 
 /**
