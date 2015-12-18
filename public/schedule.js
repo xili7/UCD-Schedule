@@ -172,7 +172,7 @@ function parseClass(classContainer) {
     var firstClassEndTime = new Date(firstClassDate);
     var classStartEndTime = schedData[1].innerHTML.split(' - ');
     var classStartTime = classStartEndTime[0].split(':');
-    var classEndTime = classEndTime[1].split(':');
+    var classEndTime = classStartEndTime[1].split(':');
     firstClassDate.setHours(Number(classStartTime[0]), Number(classStartTime[1]));
     firstClassEndTime.setHours(Number(classEndTime[0]), Number(classEndTime[1]));
     
