@@ -103,7 +103,7 @@ function listUpcomingEvents() {
         appendPre('Upcoming events:');
 
         if (events.length > 0) {
-            for (i = 0; i < events.length; i++) {
+            for (var i = 0; i < events.length; i++) {
                 var event = events[i];
                 var when = event.start.dateTime;
                 if (!when) {
@@ -157,6 +157,21 @@ function findFirstClassDate(weekdays) {
     }
 }
 
+function convert12To24HourTime(oldTime) {
+    
+    var parts = oldTime.split(':');
+    
+    if(parts[1].indexOf('pm') >= 0) {
+        parts[0] = Number(parts[0]) + 12;
+        parts[1] = parts[1].replace('pm', '');
+    } else {
+        parts[0] = Number(parts[0]);
+        parts[1] = parts[1].replace('am', '');
+    }
+    
+    parts[1] = Number(parts[1]);
+}
+
 
 /**
  * Initiate the add selected class schedules to google calendar process.
@@ -169,10 +184,10 @@ function parseClass(classContainer) {
     
     var weekdaysArray = convertWeekday(schedData[0].innerHTML);
     var firstClassDate = findFirstClassDate(weekdaysArray);
-    var firstClassEndTime = new Date(firstClassDate);
+    var firstClassEndTime = new Date(firstClassDate.toString());
     var classStartEndTime = schedData[1].innerHTML.split(' - ');
-    var classStartTime = classStartEndTime[0].split(':');
-    var classEndTime = classStartEndTime[1].split(':');
+    var classStartTime = convert12To24HourTime(classStartEndTime[0]);
+    var classEndTime = convert12To24HourTime(classStartEndTime[1]);
     firstClassDate.setHours(Number(classStartTime[0]), Number(classStartTime[1]));
     firstClassEndTime.setHours(Number(classEndTime[0]), Number(classEndTime[1]));
     
@@ -227,7 +242,7 @@ function addClassesToCalendar(event) {
 function handleQuarterSelectClick(event) {
     quarterForm.getElementsByTagName('select')[0].style.display = 'none';
     var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
-    window.confirm(classes.length);
+    window.confirm('You have' + classes.length + ' registered/waitlisted classes');
     
     for(var i = 0; i < classes.length; i++) {
         addCheckBox(classes[i], i);
