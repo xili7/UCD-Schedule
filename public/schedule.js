@@ -192,7 +192,7 @@ function parseClass(classContainer) {
     firstClassDate.setHours(classStartTime[0], classStartTime[1]);
     firstClassEndTime.setHours(classEndTime[0], classEndTime[1]);
     
-    var classLocation = schedData[2] + ' ' + schedData[3];
+    var classLocation = schedData[2].innerHTML + ' ' + schedData[3].innerHTML;
     
     var classEvent = {
         'summary': classNameParts[0],
