@@ -220,6 +220,8 @@ function parseClass(classContainer) {
     
     var classLocation = schedData[2].innerHTML + ' ' + schedData[3].innerHTML;
     
+    var rruleString = 'FREQ=WEEKLY;DTSTART=' + firstClassDate.format() + ';UNTIL=' + winterEndDate.format() + 'WKST=WE;';
+    rruleString = rruleString + 'BYDAY=' + weekdaysArray.toString();
     var classEvent = {
         'summary': classNameParts[0],
         'location': classLocation,
@@ -232,6 +234,9 @@ function parseClass(classContainer) {
             'dateTime': firstClassEndTime.format(),
             'timezone' : 'America/Los_Angeles'
         },
+        'recurrence': [
+            'RRULE:' + rruleString
+        ],
         'attendees': [],
         'remainders': {
             'useDefault': false,
