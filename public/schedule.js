@@ -10,6 +10,7 @@ var today;
 var winterStartDate;
 var newerStartDate;
 var winterEndDate;
+var selectedCalendarID;
 
 var weekdayMap = {
     'M': 'MO',
@@ -252,6 +253,7 @@ function addCalendarSelectionBox() {
     request.execute(function(response) {
         var calendarMenu = document.createElement('select');
         calendarMenu.class = "form-control";
+        calendarMenu.onchange = function() {selectedCalendarID = this.value;};
         
         var calendars = response.items;
         for(var i = 0; i < calendars.length; i++) {
@@ -260,6 +262,7 @@ function addCalendarSelectionBox() {
             option.innerHTML = calendars[i].summary;
             calendarMenu.appendChild(option);
         }
+        selectedCalendarID = calendars[0].id;
         
         quarterForm.insertBefore(calendarMenu, quarterForm.children[0]);
         quarterForm.insertAdjacentHTML('afterbegin', 'Choose one of your calendars');
