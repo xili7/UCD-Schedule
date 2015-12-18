@@ -91,7 +91,7 @@ function loadCalendarApi() {
 function addClassCallBack() {
     for(var i = 0; i < classEvents.length; i++) {
         var request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
+            'calendarId': selectedCalendarID,
             'resource': classEvents[i]
         });
     
@@ -247,8 +247,11 @@ function addClassesToCalendar(event) {
     return false;
 }
 
+/**
+ * Adds the calendar list drop down menu to DOM.
+ */
 
-function addCalendarSelectionBox() {
+function addCalendarSelectionMenu() {
     var request = gapi.client.calendar.calendarList.list();
     request.execute(function(response) {
         var calendarMenu = document.createElement('select');
@@ -278,7 +281,7 @@ function addCalendarSelectionBox() {
 function handleQuarterSelectClick(event) {
     quarterForm.children[0].style.display = 'none';
     quarterForm.getElementsByTagName('select')[0].style.display = 'none';
-    gapi.client.load('calendar', 'v3', addCalendarSelectionBox);
+    gapi.client.load('calendar', 'v3', addCalendarSelectionMenu);
     
     var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
     window.confirm('You have ' + classes.length + ' registered/waitlisted classes');
