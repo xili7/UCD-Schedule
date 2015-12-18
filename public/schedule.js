@@ -224,8 +224,7 @@ function parseClass(classContainer) {
     
     firstClassDate.utc();
     winterEndDate.utc();
-    var rruleString = 'FREQ=WEEKLY;DTSTART=' + firstClassDate.format('YYYYMMDD[T]Hmmss[Z]');
-    rruleString = rruleString + ';UNTIL=' + winterEndDate.format('YYYYMMDD[T]Hmmss[Z]') + ';WKST=WE;BYDAY=' + weekdaysArray.toString();
+    var rruleString = 'FREQ=WEEKLY;UNTIL=' + winterEndDate.format('YYYYMMDD[T]Hmmss[Z]') + ';WKST=WE;BYDAY=' + weekdaysArray.toString();
     firstClassDate.local();
     var classEvent = {
         'summary': classNameParts[0],
