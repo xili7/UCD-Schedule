@@ -261,7 +261,7 @@ function addCalendarSelectionBox() {
             calendarMenu.appendChild(option);
         }
         
-        quarterForm.appendChild(calendarMenu);
+        quarterForm.children[0] = calendarMenu;
     });
 }
 
