@@ -174,20 +174,24 @@ function findFirstClassDate(weekdays) {
     }
 }
 
-function convert12To24HourTime(oldTime) {
-    var parts = oldTime.split(':');
+function getCorrectClassStartEndTimes(classIntervalString) {
+    var parts = split(' - ');
+    var startParts = parts[0].split(':');
+    var endParts = parts[1].split(':');
+    var isPM = endParts[1].indexOf('PM') >= 0;
+    var returnArray = [];
     
-    if(parts[1].indexOf('PM') >= 0) {
-        parts[0] = Number(parts[0]) + 12;
-        parts[1] = parts[1].replace(' PM', '');
-    } else {
-        parts[0] = Number(parts[0]);
-        parts[1] = parts[1].replace(' AM', '');
+    if(isPM) {
+        if(Number(startParts[0]) < 10) {
+            returnArray[0] = Number(startParts[0]) + 12;
+            returnArray[2] = Number(endParts[0]) + 12;
+        }
     }
     
-    parts[1] = Number(parts[1]);
+    returnArray[1] = Number(startParts[1]);
+    returnArray[3] = Number(endParts.substring(0, 2));
     
-    return parts;
+    return returnArray;
 }
 
 
@@ -202,12 +206,10 @@ function parseClass(classContainer) {
     
     var weekdaysArray = convertWeekday(schedData[0].innerHTML);
     var firstClassDate = findFirstClassDate(weekdaysArray);
-    var firstClassEndTime = moment(firstClassDate.toString());
-    var classStartEndTime = schedData[1].innerHTML.split(' - ');
-    var classStartTime = convert12To24HourTime(classStartEndTime[0]);
-    var classEndTime = convert12To24HourTime(classStartEndTime[1]);
-    firstClassDate.hours(classStartTime[0]).minutes(classStartTime[1]);
-    firstClassEndTime.hours(classEndTime[0]).minutes(classEndTime[1]);
+    var firstClassEndTime = moment(firstClassDate);
+    var correctTimeParts = getCorrectClassStartEndTimes(schedData[1].innerHTML);
+    firstClassDate.hours(correctTimeParts[0]).minutes(correctTimeParts[1]);
+    firstClassEndTime.hours(correctTimeParts[2]).minutes(correctTimeParts[3]);
     
     var classLocation = schedData[2].innerHTML + ' ' + schedData[3].innerHTML;
     
