@@ -175,7 +175,7 @@ function findFirstClassDate(weekdays) {
 }
 
 function getCorrectClassStartEndTimes(classIntervalString) {
-    var parts = split(' - ');
+    var parts = classIntervalString.split(' - ');
     var startParts = parts[0].split(':');
     var endParts = parts[1].split(':');
     var isPM = endParts[1].indexOf('PM') >= 0;
