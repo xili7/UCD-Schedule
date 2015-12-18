@@ -284,7 +284,7 @@ function handleQuarterSelectClick(event) {
     gapi.client.load('calendar', 'v3', addCalendarSelectionMenu);
     
     var classes = document.getElementById('my_schedule2_container').getElementsByClassName('class_container');
-    window.confirm('You have ' + classes.length + ' registered/waitlisted classes');
+    window.confirm('You have ' + classes.length + ' registered/waitlisted classes. Select the class schedules that you want to add to Google Calendar.');
     
     for(var i = 0; i < classes.length; i++) {
         addCheckBox(classes[i], i);
