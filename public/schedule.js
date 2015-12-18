@@ -186,6 +186,9 @@ function getCorrectClassStartEndTimes(classIntervalString) {
             returnArray[0] = Number(startParts[0]) + 12;
             returnArray[2] = Number(endParts[0]) + 12;
         }
+    } else {
+        returnArray[0] = Number(startParts[0]);
+        returnArray[2] = Number(endParts[0]);
     }
     
     returnArray[1] = Number(startParts[1]);
