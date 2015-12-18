@@ -148,8 +148,8 @@ function findFirstClassDate(weekdays) {
     var firstClassDate = new Date(newerStartDate);
     
     while(true) {
-        for(var weekday in weekdays) {
-            if(firstClassDate.getDay() == weekdayNum[weekday]) {
+        for(var i = 0; i < weekdays.length; i++) {
+            if(firstClassDate.getDay() == weekdayNum[weekdays[i]]) {
                 return firstClassDate;
             }
         }
