@@ -158,7 +158,6 @@ function findFirstClassDate(weekdays) {
 }
 
 function convert12To24HourTime(oldTime) {
-    
     var parts = oldTime.split(':');
     
     if(parts[1].indexOf('pm') >= 0) {
@@ -170,6 +169,8 @@ function convert12To24HourTime(oldTime) {
     }
     
     parts[1] = Number(parts[1]);
+    
+    return parts;
 }
 
 
@@ -188,8 +189,8 @@ function parseClass(classContainer) {
     var classStartEndTime = schedData[1].innerHTML.split(' - ');
     var classStartTime = convert12To24HourTime(classStartEndTime[0]);
     var classEndTime = convert12To24HourTime(classStartEndTime[1]);
-    firstClassDate.setHours(Number(classStartTime[0]), Number(classStartTime[1]));
-    firstClassEndTime.setHours(Number(classEndTime[0]), Number(classEndTime[1]));
+    firstClassDate.setHours(classStartTime[0], classStartTime[1]);
+    firstClassEndTime.setHours(classEndTime[0], classEndTime[1]);
     
     var classLocation = schedData[2] + ' ' + schedData[3];
     
