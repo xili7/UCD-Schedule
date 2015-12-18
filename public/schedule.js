@@ -6,10 +6,10 @@ var classEvents = [];
 var classFinalEvents = [];
 var count = 0;
 
-var today = today || moment();
-var winterStartDate = winterStartDate || moment([2016, 0, 4]);
-var newerStartDate = today.diff(winterStartDate) > 0 ? today : winterStartDate;
-var winterEndDate = winterEndDate || moment([2016, 2, 14, 23]);
+var today;
+var winterStartDate;
+var newerStartDate;
+var winterEndDate;
 
 var weekdayMap = {
     'M': 'MO',
@@ -177,7 +177,7 @@ function parseClass(classContainer) {
     
     var schedData = classContainer.getElementsByClassName('schedData')[0].children[0].children;
     
-    for(var i = 0; i < schedData.length; i++) {
+    for(var i = 0; i < schedData.length - 2; i++) {
         var currentSchedData = schedData[i].children;
         var weekdaysArray = convertWeekday(currentSchedData[0].innerHTML);
         var firstClassDate = findFirstClassDate(weekdaysArray);
@@ -306,5 +306,10 @@ var quarterForm;
         } else {
             checkAuth();
         }
+        
+        today = moment();
+        winterStartDate = moment([2016, 0, 4]);
+        newerStartDate = today.diff(winterStartDate) > 0 ? today : winterStartDate;
+        winterEndDate = moment([2016, 2, 14, 23]);
     }
 }
