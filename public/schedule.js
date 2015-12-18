@@ -257,7 +257,7 @@ function addCalendarSelectionBox() {
         for(var i = 0; i < calendars.length; i++) {
             var option = document.createElement('option');
             option.value = calendars[i].id;
-            option.innerHTML = calendar[i].summary;
+            option.innerHTML = calendars[i].summary;
             calendarMenu.appendChild(option);
         }
         
