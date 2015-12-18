@@ -95,46 +95,12 @@ function addClassCallBack() {
         });
     
         request.execute(function(event) {
-            window.confirm('Finished adding rule ' + count + ' to google calendar.');
             count++;
+            if(count == classEvents.length) {
+                window.confirm('Finished adding all events to Google Calendar!');
+            }
         });
     }
-}
-
-
-/**
- * Print the summary and start datetime/date of the next ten events in
- * the authorized user's calendar. If no events are found an
- * appropriate message is printed.
- */
-function listUpcomingEvents() {
-    var request = gapi.client.calendar.events.list({
-        'calendarId': 'primary',
-        'timeMin': (new Date()).toISOString(),
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 10,
-        'orderBy': 'startTime'
-    });
-
-    request.execute(function(resp) {
-        var events = resp.items;
-        appendPre('Upcoming events:');
-
-        if (events.length > 0) {
-            for (var i = 0; i < events.length; i++) {
-                var event = events[i];
-                var when = event.start.dateTime;
-                if (!when) {
-                    when = event.start.date;
-                }
-                appendPre(event.summary + ' (' + when + ')')
-            }
-        } else {
-            appendPre('No upcoming events found.');
-        }
-
-    });
 }
 
 
@@ -288,7 +254,7 @@ function handleQuarterSelectClick(event) {
     }
     
     var addScheduleDiv = document.getElementById('addSchedule-div');
-    addScheduleDiv.firstChild.innerHTML = 'Add the selected classes to Google Calendar!'
+    addScheduleDiv.firstChild.innerHTML = 'Select classes below, then click me to add them to Google Calendar!';
     addScheduleDiv.firstChild.setAttribute('onClick', 'addClassesToCalendar(event)');
     return false;
 }
