@@ -21,7 +21,7 @@ This project was inspired by [this webapp](http://ucdgcal.appspot.com/).
 I used it for 2 quarters and liked it a lot.  However, the author stopped updating the project since the quarter of Spring 2015.
 
 Differences between this project and the webapp above  
-1. The user have to search his/her classes manually in the webapp.
+1. The user have to search his/her classes manually in the webapp.  
 2. The bookmarklet works by parsing the user's class schedule in MyUCDavis, so the user doesn't have to manually search the class to add.
-However, the user cannot add classes that he/she didn't registered/waitlisted for.
-3. The user can change the color of the events in the webapp (Will be implemented in this project soon).
+However, the user cannot add classes that he/she didn't registered/waitlisted for.  
+3. The user can change the color of the events in the webapp (Will be implemented in this project soon).  
