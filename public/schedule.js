@@ -51,7 +51,6 @@ function handleAuthResult(authResult) {
         // Hide auth UI, then load client library.
         authorizeDiv.style.display = 'none';
         addButtonDiv.style.display = 'inline';
-        loadCalendarApi();
     } else {
         // Show auth UI, allowing the user to initiate authorization by
         // clicking authorize button.
@@ -79,7 +78,25 @@ function handleAuthClick(event) {
  * once client library is loaded.
  */
 function loadCalendarApi() {
-    gapi.client.load('calendar', 'v3', listUpcomingEvents);
+    gapi.client.load('calendar', 'v3', addClassCallBack);
+}
+
+/**
+ * Print the summary and start datetime/date of the next ten events in
+ * the authorized user's calendar. If no events are found an
+ * appropriate message is printed.
+ */
+function addClassCallBack() {
+    for(var i = 0; i < classEvents.length; i++) {
+        var request = gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource': classEvents[i]
+        });
+    
+        request.execute(function(event) {
+            window.alert('finished adding class ' + i + 'to google calendar');
+        });
+    }
 }
 
 
@@ -231,6 +248,9 @@ function addClassesToCalendar(event) {
         
         parseClass(classes[i]);
     }
+    
+    loadCalendarApi();
+    
     return false;
 }
 
