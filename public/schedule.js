@@ -99,9 +99,9 @@ function addClassCallBack() {
             count++;
             if(count == classEvents.length) {
                 if(window.confirm('Finished adding all events to Google Calendar! Refresh or sync your google calendar to see the changes!')) {
-                    window.location.refresh();
+                    window.location.reload();
                 } else {
-                    window.location.refresh();
+                    window.location.reload();
                 }
             }
         });
