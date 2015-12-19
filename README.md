@@ -7,7 +7,7 @@ A bookmarklet that helps UCD students add their class schedule to Google Calenda
 
 1. Open [bookmarklet.js](bookmarklet.js) and copy the whole file.
 2. Make a new bookmark in your browser and paste what you copied as the URL.  
-  You can any anything as the name of the bookmark.  
+  The name of the bookmark can be anything.
   IMPORTANT: The URL should start with **javascript:**  
   If you don't see it at the beginning of the URL you pasted, add it back.
 3. Go to [my.ucdavis.edu](my.ucdavis.edu), and login your UCD account.
