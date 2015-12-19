@@ -3,6 +3,8 @@ A bookmarklet that helps UCD students add their class schedule to Google Calenda
 
 ##Instructions
 
+![instruction](images/instruction.gif)
+
 1. Open [bookmarklet.js](bookmarklet.js) and copy the whole file.
 2. Make a new bookmark in your browser and paste what you copied as the URL.  
   You can any anything as the name of the bookmark.  
