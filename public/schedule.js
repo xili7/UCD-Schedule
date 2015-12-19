@@ -84,9 +84,7 @@ function loadCalendarApi() {
 }
 
 /**
- * Print the summary and start datetime/date of the next ten events in
- * the authorized user's calendar. If no events are found an
- * appropriate message is printed.
+ * Add class schedules to Google Calendar
  */
 function addClassCallBack() {
     for(var i = 0; i < classEvents.length; i++) {
