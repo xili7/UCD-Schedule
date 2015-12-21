@@ -6,7 +6,7 @@ javascript:(
             document.body.appendChild(f);
             
             var g = document.createElement('script');
-            g.src = 'https://github.com/xili7/UCD-Schedule/blob/master/public/schedule.js';
+            g.src = 'http://ucdxili7.azurewebsites.net/schedule.js';
             document.body.appendChild(g);
         } else {
             window.alert('Please only use this bookmarklet in myucdavis HOME page. Please also have your UCD account logged in.');
