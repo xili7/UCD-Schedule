@@ -341,8 +341,8 @@ var quarterForm;
         
         while(typeof moment === 'undefined') {}
         today = moment();
-        winterStartDate = moment([2016, 0, 4]);
+        winterStartDate = moment([2016, 2, 28]);
         newerStartDate = today.diff(winterStartDate) > 0 ? today : winterStartDate;
-        winterEndDate = moment([2016, 2, 14, 23]);
+        winterEndDate = moment([2016, 5, 2, 23]);
     }
 }
