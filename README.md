@@ -14,7 +14,7 @@ A bookmarklet that helps UCD students add their class schedule to Google Calenda
 4. Click the bookmark you created.
 5. Follow the instructions at the mySchedule tile.  
 
-**For now, you can only add your Winter 2015 schedule to Google Calendar.**
+**For now, you can only add your Spring 2016 schedule to Google Calendar.**
 
 You can also skip step 2 and step 4 and just paste the code into the browser address bar and press enter.
 
